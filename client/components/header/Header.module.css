@@ -1,0 +1,69 @@
+/* Header.module.css */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background: var(--accent-gradient-background);
+    border-bottom: 1px solid black;
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.logoImage {
+    height: 40px;
+    margin-right: 10px;
+    background-color: transparent;
+}
+
+.logoText {
+    color: white;
+    font-size: 26px;
+    margin: 0;
+}
+
+.navLinks {
+    display: flex;
+    gap: 10px;
+}
+
+.navLinks a {
+    padding: 8px 14px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 16px;
+    text-decoration: none;
+    display: inline-block;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+}
+
+.login {
+    background: white;
+    color: black;
+    font-weight: bold;
+}
+
+.login:hover {
+    background: var(--neon-gradient-background);
+    color: white;
+}
+
+.register {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+}
+
+.register:hover {
+    background: var(--neon-gradient-background);
+    color: white;
+}

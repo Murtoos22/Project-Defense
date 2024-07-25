@@ -1,0 +1,44 @@
+/* global.css */
+
+/* gradients */
+:root {
+    --neon-gradient-background: linear-gradient(
+        to right, 
+        rgba(214, 109, 255, 1), 
+        rgba(112, 190, 255, 1), 
+        rgba(82, 178, 254, 1), 
+        rgba(130, 199, 255, 1)
+    );
+    --base-gradient-background: linear-gradient(
+        to right,
+        rgba(45, 45, 45, 1),  /* Lighter dark grey */
+        rgba(60, 60, 60, 1)   /* Slightly lighter grey */
+    );
+    --accent-gradient-background: linear-gradient(
+        to right,
+        rgba(24, 24, 24, 1),  /* Dark grey */
+        rgba(34, 34, 34, 1)   /* Slightly lighter dark grey */
+    );
+    --accent-color: #3b82f6;  /* Blue accent color for interactive elements */
+    --text-color: #ffffff;    /* White text color for readability */
+}
+
+/* Global CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background: var(--base-gradient-background);
+    width: 100%;
+    height: 100%;
+}
+
+/* TODO fix main styling */
+main {
+    /* padding: 20px;
+    margin: auto; */
+}
