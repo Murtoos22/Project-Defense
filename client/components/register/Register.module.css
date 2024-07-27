@@ -1,6 +1,4 @@
-/* Login.module.css */
-
-.loginContainer {
+.registerContainer {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
@@ -20,6 +18,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.formError {
+    margin-left: 10px;
+    font-weight: bold;
+    color: red;
 }
 
 .formGroup {

@@ -1,6 +1,8 @@
 .sectionContainer {
     margin-top: 20px;
     padding: 5px;
+    display: flex;
+    justify-content: center;
 }
 
 .sectionContainer h1 {

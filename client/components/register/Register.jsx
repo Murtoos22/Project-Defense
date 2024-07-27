@@ -1,68 +1,91 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
+import { Link, useNavigate } from 'react-router-dom';
+import { useUserCheck } from '../../hooks/useUserCheck';
+import { register } from '../../api/user-api';
 
 import styles from './Register.module.css';
 
 const Register = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repass, setRepass] = useState('');
+  const navigate = useNavigate();
+  const isLogged = useUserCheck();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    if (isLogged) navigate('/');
+  }, [isLogged, navigate]);
 
-    // TODO add authentication and register logic
-
-    setEmail('');
-    setPassword('');
-    setRepass('');
-  };
+  const validationSchema = Yup.object().shape({
+    username: Yup.string()
+      .max(20, 'Must be no longer than 20 characters long')
+      .min(3, 'Must be at least 3 characters')
+      .required('Required'),
+    email: Yup.string()
+      .min(10, 'Must be at least 10 characters long')
+      .email('Invalid email address')
+      .required('Required'),
+    password: Yup.string()
+      .min(12, 'Must be at least 12 characters')
+      .required('Required'),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password'), null], 'Passwords must match')
+      .required('Required')
+  });
 
   return (
-    <div className={styles.loginContainer}>
+    <div className={styles.registerContainer}>
       <h2 className={styles.title}>Register</h2>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.formGroup}>
-          <label htmlFor="email" className={styles.label}>Email:</label>
-          <input
-            type="email"
-            id="email"
-            className={styles.input}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="password" className={styles.label}>Password:</label>
-          <input
-            type="password"
-            id="password"
-            className={styles.input}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="password" className={styles.label}>Repeat Password:</label>
-          <input
-            type="password"
-            id="repass"
-            className={styles.input}
-            value={repass}
-            onChange={(e) => setRepass(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className={styles.button}>Register</button>
-      </form>
-      <div className={styles.redirectLink}>
-        <p>Don't have an account?</p>
-        <Link to={'/login'}>Login</Link>
-      </div>
+      <Formik
+        initialValues={{ username: '', email: '', password: '', confirmPassword: '' }}
+        validationSchema={validationSchema}
+        onSubmit={async (values, { setSubmitting, setErrors }) => {
+          const { username, email, password, confirmPassword } = values;
+
+          try {
+            await register(username, email, password, confirmPassword);
+            navigate('/');
+          } catch (error) {
+            setErrors({ submit: error.message });
+            setSubmitting(false);
+          };
+        }}
+      >
+        {({ isSubmitting, errors }) => (
+          <Form className={styles.form}>
+            <div className={styles.formGroup}>
+              <label htmlFor="username" className={styles.label}>Username</label>
+              <Field type="text" name="username" className={styles.input} />
+              <ErrorMessage name="username" component="div" className={styles.formError} />
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="email" className={styles.label}>Email</label>
+              <Field type="email" name="email" className={styles.input} />
+              <ErrorMessage name="email" component="div" className={styles.formError} />
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="password" className={styles.label}>Password</label>
+              <Field type="password" name="password" className={styles.input} />
+              <ErrorMessage name="password" component="div" className={styles.formError} />
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="confirmPassword" className={styles.label}>Confirm Password</label>
+              <Field type="password" name="confirmPassword" className={styles.input} />
+              <ErrorMessage name="confirmPassword" component="div" className={styles.formError} />
+            </div>
+            {errors.submit && <div className={styles.formError}>{errors.submit}</div>}
+            <button type="submit" className={styles.button} disabled={isSubmitting}>
+              Register
+            </button>
+            <div className={styles.redirectLink}>
+              Already have an account? <Link to="/login">Login</Link>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
 
 export default Register;
+

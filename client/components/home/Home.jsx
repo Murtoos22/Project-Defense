@@ -1,13 +1,13 @@
 import React from 'react';
-import Explorer from './card-section/CardSection';
+import styles from './Home.module.css';
+
+import CardSection from './card-section/CardSection';
 
 const Home = () => {
     return (
-        <>
-            <Explorer />
-            <Explorer />
-            <Explorer />
-        </>
+        <div className={styles.homewrapper}>
+            <CardSection />
+        </div>
     );
 };
 

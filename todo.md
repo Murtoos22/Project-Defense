@@ -15,10 +15,10 @@
   - [X] Create Footer Component
     - [X] Add Footer Routing Links
     - [ ] Add Footer Component functionality
-  - [ ] Create Login Component
-    - [ ] Add Login Component Logic and authentication
-  - [ ] Add Register Component
-    - [ ] Add Register Component Logic abd authentication
+  - [X] Create Login Component
+    - [X] Add Login Component Logic and authentication
+  - [X] Add Register Component
+    - [X] Add Register Component Logic abd authentication
 
 ## Functionality Requirements and backend communication
 - [ ] Create basic requester for server

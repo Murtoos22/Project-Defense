@@ -5,8 +5,8 @@
     flex-direction: column;
     justify-content: space-between;
 
-    width: 350px;
-    height: 300px;
+    max-width: 350px;
+    max-height: 300px;
     flex: 0 0 auto;
     padding: 20px;
     color: var(--text-color);
@@ -30,6 +30,7 @@
 }
 
 .cardContainer button {
+    margin-top: 15px;
     cursor: pointer;
     font-weight: bold;
     margin-top: 10px;
@@ -49,3 +50,6 @@
     transform: scale(1.01);
 }
 
+.name {
+    margin-bottom: 10px;
+}
