@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 require('../models/User');
-require('../models/Recipe');
  
 async function configDataBase() {
     // TODO change connection string if needed to connect to local mongo collection

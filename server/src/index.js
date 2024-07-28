@@ -19,7 +19,6 @@ async function start() {
 
     app.use(express.json());
 
-
     await configDataBase();
     configExpress(app);
     configRouters(app);

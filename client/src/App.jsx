@@ -10,6 +10,7 @@ import Login from '../components/login/Login';
 import Register from '../components/register/Register';
 import Home from '../components/home/Home';
 
+// TODO fix lgout logic
 import { logout } from '../api/user-api';
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/logout' element={logout()} />
+            {/* <Route path='/logout' element={logout()} /> */}
           </Routes>
         </main>
 

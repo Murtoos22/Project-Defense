@@ -6,7 +6,7 @@ import CardSection from './card-section/CardSection';
 const Home = () => {
     return (
         <div className={styles.homewrapper}>
-            <CardSection />
+            {/* <CardSection /> */}
         </div>
     );
 };

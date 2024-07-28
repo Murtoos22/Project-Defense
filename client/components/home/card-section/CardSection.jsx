@@ -4,16 +4,6 @@ import styles from './CardSection.module.css';
 import Card from './card/Card';
 
 const CardSection = (props) => {
-  const [tokens, setTokens] = useState({});
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const result = await fetch('http://localhost:3030/jsonstore/tokens');
-
-  //     const tokens = await result.json();
-  //     setTokens(tokens);
-  //   })();
-  // }, [])
 
   return (
     <div className={styles.sectionContainer}>

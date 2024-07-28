@@ -24,6 +24,12 @@
     margin-bottom: 25px;
 }
 
+.formError {
+    margin-left: 10px;
+    font-weight: bold;
+    color: red;
+}
+
 .label {
     margin-left: 13px;
     font-weight: bold;

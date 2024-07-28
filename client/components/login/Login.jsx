@@ -1,20 +1,16 @@
-import React, { useEffect } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-import { Link, useNavigate } from 'react-router-dom';
-import { useUserCheck } from '../../hooks/useUserCheck';
+import { login } from '../../api/user-api';
+import useUserLoginCheck from '../../hooks/useUserLoginCheck';
 
 import styles from './Login.module.css';
-import { login } from '../../api/user-api';
 
 const Login = () => {
-  const navigate = useNavigate();
-  const isLogged = useUserCheck();
-
-  useEffect(() => {
-    if (isLogged) navigate('/');
-  }, [isLogged, navigate]);
+  const { checkAndRedirect, navigate } = useUserLoginCheck();
+  const isLoggedIn = checkAndRedirect();
+  if (isLoggedIn) return null;
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -29,7 +25,7 @@ const Login = () => {
     <div className={styles.loginContainer}>
       <h2 className={styles.title}>Login</h2>
       <Formik
-        initialValues={{ email: '', password: ''}}
+        initialValues={{ email: '', password: '' }}
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting, setErrors }) => {
           const { email, password } = values;

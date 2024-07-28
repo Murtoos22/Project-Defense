@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 import siteLogo from '../../public/site-logo-alt.png';
 
-import Cookies from 'js-cookie';
+import useUserLoginCheck from '../../hooks/useUserLoginCheck';
 
 const Header = () => {
-  const isUser = !!Cookies.get('token');
+  const { checkAndRedirect } = useUserLoginCheck();
+  const isLoggedIn = checkAndRedirect();
 
   return (
     <header className={styles.header}>
@@ -16,7 +17,7 @@ const Header = () => {
         </Link>
         <h1 className={styles.logoText}>Crypto Blog</h1>
       </div>
-      {isUser
+      {isLoggedIn
         ? null // TODO fix this add additional links
         : (
           <div className={styles.navLinks}>
