@@ -1,0 +1,87 @@
+.introContainer {
+    background: var(--accent-gradient-background);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin: 4%;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.title {
+    color: var(--text-color);
+
+    text-align: center;
+
+    font-size: 48px;
+}
+
+.textContainer {
+    max-width: 1200px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.text {
+    color: var(--text-color);
+
+    padding: 20px;
+    font-size: 30px;    
+}
+
+.tokenContainer {
+    display: grid;
+    justify-content: center;           
+
+    margin: 0 auto;
+    max-width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 38px;
+    padding: 38px;
+    max-width: 350px;
+}
+
+.searchContainer {
+    margin: 3%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchInput {
+    color: var(--text-color);
+    background: var(--accent-gradient-background);
+
+    border: none;
+    font-weight: bold;
+
+    width: 50%;
+    padding: 14px;
+    font-size: 20px;
+    border-radius: 20px;
+}
+
+.noResultContainer {
+    background: var(--accent-gradient-background);
+
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 5% 20%;
+    padding: 20px;
+    border-radius: 14px;
+}
+
+.noResultMessage {
+    color: red;
+    font-weight: bold;
+
+    font-size: 32px;
+}
+

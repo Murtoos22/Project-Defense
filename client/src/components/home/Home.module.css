@@ -1,0 +1,23 @@
+.home-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.homeIntroContainer {
+    color: var(--text-color);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.homeIntroTitle {
+    padding: 15px;
+}
+
+.homeIntroText {
+    font-size: 24px;
+}

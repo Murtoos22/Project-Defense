@@ -2,18 +2,22 @@ import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import { AuthContext } from '../context/authContext';
+import { AuthContext } from './context/authContext';
 
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
-import Login from '../components/login/Login';
-import Register from '../components/register/Register';
-import Home from '../components/home/Home';
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import Login from './components/login/Login';
+import Register from './components/register/Register';
+import Home from './components/home/Home';
+import Tokens from './components/Tokens/Tokens';
+import TokenDetails from './components/token-details/TokenDetails';
 
-// TODO fix lgout logic
-import { logout } from '../api/user-api';
+// TODO fix logout logic
+import { logout } from './api/user-api';
+import { useGetAllTokens } from './hooks/useGetAllTokens';
 
 function App() {
+  // TODO review auth state functionality
   const [authState, setAuthState] = useState({});
 
   const changeAuthState = (state) => {
@@ -28,6 +32,8 @@ function App() {
     changeAuthState,
   };
 
+  const tokens = useGetAllTokens();
+
   return (
     <AuthContext.Provider value={contextData}>
       <div className="wrapper">
@@ -38,7 +44,8 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
-            {/* <Route path='/logout' element={logout()} /> */}
+            <Route path='/tokens' element={<Tokens tokens={tokens}/> }/>
+            <Route path='/tokens/:id' element={<TokenDetails tokens={tokens} />} />
           </Routes>
         </main>
 
