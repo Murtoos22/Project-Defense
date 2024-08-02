@@ -36,23 +36,23 @@ const TokenDetails = () => {
                     <SvgImage name={token.name} height='45' width='45' />
                 </div>
                 <div className={styles.articleContent}>
-                    <h2 className={styles.articleHeader}>Introduction</h2>
+                    <div className={styles.articleHeader}>Introduction</div>
                     <p className={styles.articleParagraph}>
                         {token.articleContent.introduction}
                     </p>
-                    <h2 className={styles.articleHeader}>What is {token.name}?</h2>
+                    <div className={styles.articleHeader}>What is {token.name}?</div>
                     <p className={styles.articleParagraph}>
                         {token.articleContent.definition}
                     </p>
-                    <h2 className={styles.articleHeader}>How does {token.name} work?</h2>
+                    <div className={styles.articleHeader}>How does {token.name} work?</div>
                     <p className={styles.articleParagraph}>
                         {token.articleContent.methodology}
                     </p>
-                    <h2 className={styles.articleHeader}>What makes {token.name} special?</h2>
+                    <div className={styles.articleHeader}>What makes {token.name} special?</div>
                     <p className={styles.articleParagraph}>
                         {token.articleContent.specialties}
                     </p>
-                    <h2 className={styles.articleHeader}>How does {token.name} benefit the crypto ecosystem?</h2>
+                    <div className={styles.articleHeader}>How does {token.name} benefit the crypto ecosystem?</div>
                     <p className={styles.articleParagraph}>
                         {token.articleContent.benefits}
                     </p>

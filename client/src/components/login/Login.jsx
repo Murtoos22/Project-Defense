@@ -57,7 +57,7 @@ const Login = () => {
               Login
             </button>
             <div className={styles.redirectLink}>
-              Don't have an account? <Link to="/register">Login</Link>
+              Don't have an account? <Link to="/register">Register</Link>
             </div>
           </Form>
         )}
