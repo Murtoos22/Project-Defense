@@ -20,12 +20,12 @@ import { ReactComponent as Aave } from '../../public/token-images/aave.svg';
 export default {
     Bitcoin: Bitcoin,
     Ethereum: Ether,
-    USDC: Usdc,
+    "USD Coin": Usdc,
     Uniswap: Unitoken,
     Chainlink: Chainlink,
     Cardano: Cardano,
     Avalanche: Avalanche,
-    Binance: Binance,
+    "Binance Coin": Binance,
     Cosmos: Cosmos,
     Litecoin: Litecoin,
     Matic: Matic,
@@ -34,6 +34,6 @@ export default {
     Solana: Solana,
     Stellar: Stellar,
     Tron: Tron,
-    USDT: Usdt,
+    Tether: Usdt,
     Aave: Aave,
 };

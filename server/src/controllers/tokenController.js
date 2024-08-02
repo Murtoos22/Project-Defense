@@ -1,5 +1,6 @@
 const { Router } = require('express');
-const { getAll, getPartial, getOne } = require('../services/cryptoDataService');
+const { getAll, getPartial, getOne } = require('../services/tokenService');
+const { isUser } = require('../middlewares/guards');
 
 const tokenRouter = Router();
 
@@ -25,6 +26,10 @@ tokenRouter.get('/tokens/:id', async(req, res) => {
     if(!token) res.status(404);
 
     res.send(token);
+});
+
+tokenRouter.get('/tokens/:id/comment', isUser(), async(req, res) => {
+    console.log('access granted');
 });
 
 module.exports = {

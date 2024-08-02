@@ -1,0 +1,86 @@
+.tokenArticleContainer {
+    background: var(--accent-gradient-background);
+
+    border: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    margin: 3% 12%;
+    border-radius: 16px;
+}
+
+.titleContainer {
+    color: var(--text-color);
+    background-color: var(--neon-gradient-background);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 20px;
+}
+
+.title {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+}
+
+.articleContent {
+    display: flex;
+    flex-direction: column;
+
+    padding: 12px;
+}
+
+.articleHeader {
+    color: var(--accent-color);
+
+    padding: 16px;
+    font-size: 28px;
+}
+
+.articleParagraph {
+    color: var(--text-color);
+
+    padding: 16px;
+    font-size: 24px;
+    line-height: 1.4;
+}
+
+.commentsContainer {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 28px;
+}
+
+.commentButtonContainer {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 30px;
+}
+
+.commentsButton {
+    color: var(--text-color);
+    background: var(--neon-gradient-background);
+
+    border: none;
+    transition: ease;
+
+    width: 350px;
+    padding: 12px;
+    font-size: 24px;
+    border-radius: 32px;
+}
+
+.commentsButton:hover {
+    background: var(--accent-gradient-background);
+
+    border: 1px solid white;
+    transform: scale(1.01);
+}

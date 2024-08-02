@@ -1,14 +1,14 @@
 import tokenSvgs from "../../constants/token-svgs";
 
-function getSvgFromName(name) {
+function getSvgFromName(name, height, width) {
     const SvgComponent = tokenSvgs[name];
-    return SvgComponent ? <SvgComponent height="35" width="35" /> : <></>;
+    return SvgComponent ? <SvgComponent height={height} width={width}/> : <></>;
 };
 
-const SvgImage = ({ name }) => {
+const SvgImage = ({ name, height = "35", width = "35" }) => {
     return (
         <>
-            {getSvgFromName(name)}
+            {getSvgFromName(name, height, width)}
         </>
     );
 };

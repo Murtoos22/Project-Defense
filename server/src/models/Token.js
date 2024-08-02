@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { commentSchema } = require('./Comment');
 
 const articleContentSchema = new Schema({
     introduction: {
@@ -20,6 +21,10 @@ const articleContentSchema = new Schema({
     benefits: {
         type: String,
         required: true,
+    },
+    comments: {
+        type: [commentSchema],
+        default: [],
     },
 });
 
