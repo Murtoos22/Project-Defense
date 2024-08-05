@@ -44,7 +44,7 @@
 
     width: 55%;
     margin-left: 15px;
-    padding: 14px;
+    padding: 8px;
     font-size: 28px;
     border-radius: 40px;
 }
@@ -79,7 +79,7 @@
     transition: ease;
 
     width: 350px;
-    padding: 12px;
+    padding: 4px;
     font-size: 24px;
     border-radius: 32px;
 }
@@ -89,4 +89,70 @@
 
     border: 1px solid white;
     transform: scale(1.01);
+}
+
+.noCommentsContainer {
+    background: var(--accent-gradient-background);
+    
+    border: none;
+    color: red;
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+
+    margin: 3% 25%;
+    padding: 8px;
+    font-size: 32px;
+    border-radius: 18px;
+}
+
+.commentOnPostContainer {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 20px;
+}
+
+.commentOnPostButton {
+    color: var(--text-color);
+    background: var(--neon-gradient-background);
+
+    border: none;
+
+    width: 250px;
+    padding: 8px;
+    font-size: 18px;
+    border-radius: 18px;
+}
+
+.commentOnPostButton:hover {
+    transform: scale(1.01);
+    background: var(--accent-gradient-background);
+
+    border: 1px solid white;
+}
+
+.cancelCommentContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancelCommentButton {
+    color: var(--text-color);
+
+    border: none;
+    background: red;
+
+    width: 35px;
+    height: 35px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+}
+
+.cancelCommentButton:hover {
+    color: red;
+
+    background: white;
+    transition: ease-in 0.1s;
 }

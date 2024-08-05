@@ -29,13 +29,12 @@ const Login = () => {
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting, setErrors }) => {
           const { email, password } = values;
-          console.log(email, password);
 
           try {
             await login(email, password);
             navigate('/');
           } catch (error) {
-            setErrors({ submit: error.message });
+            setErrors({ submit: error.response.data.message });
             setSubmitting(false);
           };
         }}

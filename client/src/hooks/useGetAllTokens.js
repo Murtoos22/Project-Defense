@@ -3,7 +3,7 @@ import {
     getAllTokens,
     getPartialTokens,
     getOneTokenById
-} from "../api/crypto-data-api";
+} from "../api/token-api";
 
 export function useGetAllTokens() {
     const [tokens, setTokens] = useState([]);

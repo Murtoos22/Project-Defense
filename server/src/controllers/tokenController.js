@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { getAll, getPartial, getOne } = require('../services/tokenService');
 const { isUser } = require('../middlewares/guards');
+const { createComment } = require('../services/commentService');
 
 const tokenRouter = Router();
 
@@ -28,8 +29,12 @@ tokenRouter.get('/tokens/:id', async(req, res) => {
     res.send(token);
 });
 
-tokenRouter.get('/tokens/:id/comment', isUser(), async(req, res) => {
-    console.log('access granted');
+tokenRouter.post('/tokens/:id/comment', isUser(), async(req, res) => {
+    const userId = req.user._id;
+
+    // const comment = createComment(req.body, userId);
+
+    res.send(comment);
 });
 
 module.exports = {

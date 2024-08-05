@@ -20,7 +20,7 @@ userRouter.post('/register', isGuest(),
             const validation = validationResult(req);
 
             if (validation.errors.length) {
-                return res.status(400).json(validation.errors);
+                throw validation.errors;
             };
             const result = await register(username, email, password);
             const token = createToken(result);
@@ -36,7 +36,9 @@ userRouter.post('/register', isGuest(),
                 userId: result._id,
             });
         } catch (err) {
-            res.status(500).json({ errors: parseError(err).errors });
+            res.status(500).json({
+                message: err.message,
+            });
         };
     },
 );
@@ -51,7 +53,7 @@ userRouter.post('/login', isGuest(),
             const validation = validationResult(req);
 
             if (validation.errors.length) {
-                return res.status(400).json(validation.errors);
+                throw validation.errors;
             };
             const result = await login(email, password);
             const token = createToken(result);
@@ -67,7 +69,9 @@ userRouter.post('/login', isGuest(),
                 userId: result._id,
             });
         } catch (err) {
-            res.status(500).json({ errors: parseError(err).errors });
+            res.status(500).json({
+                message: err.message,
+            });
         };
     }
 );

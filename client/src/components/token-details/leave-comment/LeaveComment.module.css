@@ -1,0 +1,57 @@
+.leaveCommentContainer {
+    background: var(--accent-gradient-background);
+
+    border: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 300px;
+    margin: 2% 25%;
+    padding: 25px;
+    border-radius: 28px;
+}
+
+.commentTextArea {
+    color: var(--text-color);
+    background: var(--base-gradient-background);
+
+    border: none;
+    resize: none;
+    outline: none;
+
+    width: 85%;
+    height: 100%;
+    padding: 18px;
+    font-size: 18px;
+    border-radius: 16px;
+}
+
+.commentErrorText {
+    color: red;
+    font-weight: bold;
+
+    margin-top: 10px;
+}
+
+.leaveCommentButton {
+    color: var(--text-color);
+    background: var(--neon-gradient-background);
+
+    border: none;
+
+    width: 300px;
+    padding: 8px;
+    font-size: 20px;
+    margin-top: 20px;
+    border-radius: 18px;
+}
+
+.leaveCommentButton:hover {
+    background: var(--accent-gradient-background);
+
+    border: 1px solid white;
+
+    transform: scale(1.05);
+}

@@ -6,6 +6,7 @@ export default function useUserLoginCheck() {
     const navigate = useNavigate();
     const isLoggedIn = Cookies.get('token');
     return {
+        isLoggedIn,
         checkAndRedirect: function () {
             useEffect(() => {
                 if (isLoggedIn) navigate('/');

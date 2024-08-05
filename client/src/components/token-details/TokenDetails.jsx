@@ -7,23 +7,35 @@ import { useGetOneTokenById } from '../../hooks/useGetAllTokens';
 
 import Comment from './comment/Comment';
 import SvgImage from '../SvgImage/SvgImage';
+import LeaveComment from './leave-comment/LeaveComment';
+import useUserLoginCheck from '../../hooks/useUserLoginCheck';
 
 const TokenDetails = () => {
-
-    const [someState, setSomeState] = useState(true);
-
-    const [viewComments, setViewComments] = useState(false);
     const { id } = useParams();
+    const { isLoggedIn, navigate } = useUserLoginCheck();
+    const [leaveComment, setLeaveComment] = useState(false);
+    const [viewComments, setViewComments] = useState(false);
+
     const token = useGetOneTokenById(id);
 
     if (!token.articleContent) return <></>;
 
-    function onViewCommentsButtonClick(e) {
+    function onViewCommentsButtonClick() {
         setViewComments(true);
     };
 
-    function onHideCommentsButtonClick(e) {
+    function onHideCommentsButtonClick() {
         setViewComments(false);
+    };
+
+    function onLeaveCommentButtonHandler() {
+        if (!isLoggedIn) navigate('/login');
+
+        setLeaveComment(true);
+    };
+
+    function oncancelButtonClickHandler() {
+        setLeaveComment(false);
     };
 
     console.log(token.articleContent.comments);
@@ -57,6 +69,14 @@ const TokenDetails = () => {
                         {token.articleContent.benefits}
                     </p>
                 </div>
+                <div className={styles.commentOnPostContainer}>
+                    <button
+                        className={styles.commentOnPostButton}
+                        onClick={onLeaveCommentButtonHandler}
+                    >
+                        Leave Comment
+                    </button>
+                </div>
             </div>
             <div className={styles.commentButtonContainer}>
                 {viewComments
@@ -78,12 +98,34 @@ const TokenDetails = () => {
                     )
                 }
             </div>
-            {viewComments
+            {!viewComments
                 ? (
+                    /* TODO token.comments.map(token) => ...*/
                     <div className={styles.commentsContainer}>
-                        {/* <h1>Comments</h1> */}
-                        <Comment state={someState}/>
+                        {token.articleContent.comments.map(comment => {
+                            <Comment key={comment._id} comment={comment} />
+                        })}
                     </div>
+                )
+                : (
+                    <div className={styles.noCommentsContainer}>
+                        <p>There are no comments on this article</p>
+                    </div>
+                )
+            }
+            {leaveComment
+                ? (
+                    <>
+                        <LeaveComment />
+                        <div className={styles.cancelCommentContainer}>
+                            <button
+                                className={styles.cancelCommentButton}
+                                onClick={oncancelButtonClickHandler}
+                            >
+                                X
+                            </button>
+                        </div>
+                    </>
                 )
                 : null
             }
