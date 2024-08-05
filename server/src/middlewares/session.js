@@ -8,8 +8,9 @@ function session() {
             try {
                 const sessionData = verifyToken(token);
                 req.user = {
-                    email: sessionData.email,
                     _id: sessionData._id,
+                    email: sessionData.email,
+                    username: sessionData.username,
                 };
                 res.locals.hasUser = true;
             } catch (err) {

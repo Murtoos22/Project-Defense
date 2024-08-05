@@ -34,7 +34,7 @@ const TokenDetails = () => {
         setLeaveComment(true);
     };
 
-    function oncancelButtonClickHandler() {
+    function onCancelButtonClickHandler() {
         setLeaveComment(false);
     };
 
@@ -120,7 +120,7 @@ const TokenDetails = () => {
                         <div className={styles.cancelCommentContainer}>
                             <button
                                 className={styles.cancelCommentButton}
-                                onClick={oncancelButtonClickHandler}
+                                onClick={onCancelButtonClickHandler}
                             >
                                 X
                             </button>

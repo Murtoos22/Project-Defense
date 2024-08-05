@@ -29,14 +29,6 @@ tokenRouter.get('/tokens/:id', async(req, res) => {
     res.send(token);
 });
 
-tokenRouter.post('/tokens/:id/comment', isUser(), async(req, res) => {
-    const userId = req.user._id;
-
-    // const comment = createComment(req.body, userId);
-
-    res.send(comment);
-});
-
 module.exports = {
     tokenRouter,
 };
