@@ -24,7 +24,8 @@ const Comment = ({ comment, onCommentAction }) => {
     const onLikeButtonClickHandler = async () => {
         try {
             const comm = await likeComment(comment, id);
-            setLikes(comm.likes.length)
+            setLikes(comm.likes.length);
+            setDislikes(comm.dislikes.length);
         } catch (error) {
             console.error(error.message);
         };
@@ -33,7 +34,8 @@ const Comment = ({ comment, onCommentAction }) => {
     const onDislikeButtonClickHandler = async () => {
         try {
             const comm = await dislikeComment(comment, id);
-            setDislikes(comm.dislikes.length)
+            setLikes(comm.likes.length);
+            setDislikes(comm.dislikes.length);
         } catch (error) {
             console.error(error.message);
         };

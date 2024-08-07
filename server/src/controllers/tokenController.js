@@ -100,7 +100,7 @@ tokenRouter.put('/tokens/:id/comment/:commentId', isUser(), async (req, res) => 
         res.send(token);
     } catch (error) {
         res.status(500).send({ error: 'Internal Server Error' });
-    }
+    };
 });
 
 
@@ -144,6 +144,8 @@ tokenRouter.post('/tokens/:id/comment/like', isUser(), async (req, res) => {
             return res.status(400).send({ error: 'You have already liked this comment' });
         };
 
+        comment.dislikes = comment.dislikes.filter(d => d.toString() !== userId);
+
         comment.likes.push(userId);
 
         await token.save();
@@ -175,6 +177,8 @@ tokenRouter.post('/tokens/:id/comment/dislike', isUser(), async (req, res) => {
         if (comment.dislikes.some(d => d.toString() === userId)) {
             return res.status(400).send({ error: 'You have already liked this comment' });
         };
+
+        comment.likes = comment.likes.filter(l => l.toString() !== userId);
 
         comment.dislikes.push(userId);
 
