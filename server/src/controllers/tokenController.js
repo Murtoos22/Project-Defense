@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const { isUser } = require('../middlewares/guards');
-const { createComment } = require('../services/commentService');
-const { getAll, getPartial, getOne, appendComment, appendReply } = require('../services/tokenService');
+const { getAll, getPartial, getOne, appendComment, createComment } = require('../services/tokenService');
 
 const tokenRouter = Router();
 

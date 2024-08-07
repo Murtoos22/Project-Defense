@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const { body, validationResult } = require('express-validator');
 
-const { parseError } = require('../util');
 const { register, login } = require('../services/userService');
 const { createToken } = require('../services/jwtService');
 const { isGuest, isUser } = require('../middlewares/guards');
@@ -9,9 +8,9 @@ const { isGuest, isUser } = require('../middlewares/guards');
 const userRouter = Router();
 
 userRouter.post('/register', isGuest(),
-    body('username').trim().isLength({ min: 2, max: 20 }).withMessage('Username must be between 2 and 20 characters long.'),
-    body('email').trim().isEmail().isLength({ min: 10 }).withMessage('Email must be between at least 10 characters long.'),
-    body('password').trim().isLength({ min: 4 }).withMessage('Password must be at least 12 characters long.'),
+    body('username').trim().isLength({ min: 2, max: 40 }).withMessage('Username must be between 2 and 40 characters long.'),
+    body('email').trim().isEmail().isLength({ min: 5 }).withMessage('Email must be at least 5 characters long.'),
+    body('password').trim().isLength({ min: 12 }).withMessage('Password must be at least 12 characters long.'),
     body('confirmPassword').trim().custom((value, { req }) => value == req.body.password).withMessage('Passwords do not match'),
     async (req, res) => {
         const { username, email, password } = req.body;

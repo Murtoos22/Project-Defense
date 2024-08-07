@@ -1,4 +1,5 @@
 const { Token } = require('../models/Token');
+const { Comment } = require('../models/Comment');
 
 async function getAll() {
     return Token.find().lean();
@@ -12,6 +13,16 @@ async function getOne(id) {
     return Token.findById(id);
 };
 
+function createComment(commentData, username, authorId) {
+    const comment = new Comment({
+        author: authorId,
+        text: commentData,
+        authorUsername: username,
+    });
+
+    return comment;
+};
+
 async function appendComment(comment, tokenId) {
     const token = await getOne(tokenId);
     
@@ -22,22 +33,10 @@ async function appendComment(comment, tokenId) {
     return token;
 };
 
-async function appendReply(comment, tokenId) {
-    const token = await getOne(tokenId);
-    
-    const commentToReply = token.articleContent.comments.find(comm => comm._id.toString() === comment._id.toString());
-
-    commentToReply.replies.push(comment);
-
-    await token.save();
-
-    return token;
-};
-
 module.exports = {
     getAll,
     getOne,
     getPartial,
-    appendReply,
+    createComment,
     appendComment,
 };
