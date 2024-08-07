@@ -9,22 +9,31 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
         <div className={styles.footerSection}>
-          <ConicGradientText>About Us</ConicGradientText>
+          <ConicGradientText
+            className={styles.footerTitleText}>
+            About Us
+          </ConicGradientText>
           <p>
-            We are a team of passionate developers creating awesome web applications.
+            We are a team of passionate developers dedciated to spread the word for the revolutionizing possibilites cryptocurrencies bring to us.
           </p>
         </div>
         <div className={styles.footerSection}>
-          <ConicGradientText>Quick Links</ConicGradientText>
+          <ConicGradientText
+            className={styles.footerTitleText}>
+            Quick Links
+          </ConicGradientText>
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/services">Services</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+          <li><Link to="/">Home</Link></li>
+            <li><Link to="/tokens">Tokens</Link></li>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/register">Register</Link></li>
           </ul>
         </div>
         <div className={styles.footerSection}>
-          <ConicGradientText>Follow Us</ConicGradientText>
+          <ConicGradientText
+            className={styles.footerTitleText}>
+            Follow Us
+          </ConicGradientText>
           <ul>
             <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
             <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>

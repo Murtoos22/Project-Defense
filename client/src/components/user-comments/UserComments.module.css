@@ -7,3 +7,57 @@
     margin-top: 50px;
     margin-bottom: 20px;
 }
+
+.noCommentContainer {
+    background: var(--accent-gradient-background);
+
+    border: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 20px;
+    margin: 35px 180px;
+    border-radius: 20px;
+}
+
+.noCommentText {
+    color: red;
+    font-weight: bold;
+
+    font-size: 28px;
+}
+
+.noCommentLinkContainer {
+    border: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 20px;
+    margin: 10px 160px;
+    border-radius: 20px;
+}
+
+.noCommentLink {
+    color: var(--text-color);
+    background: var(--accent-gradient-background);
+    
+    border: none;
+    text-decoration: none;
+
+    padding: 20px;
+    font-size: 24px;
+    border-radius: 30px;
+}
+
+.noCommentLink:hover {
+    color: black;
+    background: white;
+
+    border: 2px solid black;
+
+    transition: ease 0.3s;
+}

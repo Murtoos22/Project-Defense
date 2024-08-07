@@ -1,4 +1,3 @@
-/* Footer.module.css */
 .footer {
     background: var(--accent-gradient-background);
     color: white;
@@ -6,6 +5,11 @@
     text-align: center;
     border: none;
     width: 100%;
+}
+
+.footerTitleText {
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .footerContent {
@@ -16,7 +20,7 @@
 
 .footerSection {
     flex: 1;
-    margin: 10px;
+    margin: 20px;
 }
 
 .footerSection h2 {
@@ -25,15 +29,23 @@
 
 .footerSection p,
 .footerSection ul {
-    margin: 0;
+    margin: 5px;
     padding: 0;
     list-style: none;
+
+    font-size: 18px;
+}
+
+.footerSection li {
+    margin-top: 4px;
 }
 
 .footerSection a {
     color: white;
     text-decoration: none;
-    margin: 0 5px;
+
+    margin-top: 3px;
+    font-size: 18px;
 }
 
 .footerSection a:hover {
