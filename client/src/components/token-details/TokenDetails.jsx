@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import styles from './TokenDetails.module.css';
-
 import { useParams } from 'react-router-dom';
 import { useGetOneTokenById } from '../../hooks/useGetAllTokens';
 
@@ -13,12 +12,20 @@ import useUserLoginCheck from '../../hooks/useUserLoginCheck';
 const TokenDetails = () => {
     const { id } = useParams();
     const { isLoggedIn, navigate } = useUserLoginCheck();
+
+    const [token, setToken] = useState(null);
     const [leaveComment, setLeaveComment] = useState(false);
     const [viewComments, setViewComments] = useState(false);
 
-    const token = useGetOneTokenById(id);
+    const fetchedToken = useGetOneTokenById(id);
 
-    if (!token.articleContent) return <></>;
+    useEffect(() => {
+        if (fetchedToken) {
+            setToken(fetchedToken);
+        }
+    }, [fetchedToken]);
+
+    if (!token || !token.articleContent) return <></>;
 
     function onViewCommentsButtonClick() {
         setViewComments(true);
@@ -38,7 +45,9 @@ const TokenDetails = () => {
         setLeaveComment(false);
     };
 
-    console.log(token.articleContent.comments);
+    function handleNewComment(newToken) {
+        setToken(newToken);
+    };
 
     return (
         <div>
@@ -98,25 +107,27 @@ const TokenDetails = () => {
                     )
                 }
             </div>
-            {!viewComments
+            {viewComments && token.articleContent.comments.length > 0
                 ? (
-                    /* TODO token.comments.map(token) => ...*/
                     <div className={styles.commentsContainer}>
-                        {token.articleContent.comments.map(comment => {
-                            <Comment key={comment._id} comment={comment} />
-                        })}
+                        {/* {console.log(token.articleContent.comments)} */}
+                        {token.articleContent.comments.map(comment => (
+                            <Comment key={comment._id} comment={comment} onCommentAction={handleNewComment}/>
+                        ))}
                     </div>
                 )
-                : (
+                : viewComments && token.articleContent.comments.length === 0 
+                ? (
                     <div className={styles.noCommentsContainer}>
                         <p>There are no comments on this article</p>
                     </div>
                 )
+                : null
             }
             {leaveComment
                 ? (
                     <>
-                        <LeaveComment />
+                        <LeaveComment onCommentAdded={handleNewComment} />
                         <div className={styles.cancelCommentContainer}>
                             <button
                                 className={styles.cancelCommentButton}

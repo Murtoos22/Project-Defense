@@ -1,32 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { createComment } from '../../../api/comments-api';
-
 import styles from './LeaveComment.module.css';
+import { useParams } from 'react-router-dom';
+import { appendComment, appendReply } from '../../../api/token-api';
 
-const LeaveComment = () => {
+const LeaveComment = ({ onCommentAdded, isReply = false, comment }) => {
+    const { id } = useParams();
+
     const validationSchema = Yup.object().shape({
-        comment: Yup.string()
-        .required('Comment cannot be empty!'),
+        comment: Yup.string().required('Comment cannot be empty!'),
     });
+
+    const handleFormSubmit = async (value, { setSubmitting, setErrors, resetForm }) => {
+        const { comm } = value;
+
+        try {
+            let newToken;
+            if(!isReply) {
+                newToken = await appendComment(comm, id);
+            } else {
+                newToken = await appendReply(comm, id, comment);
+            };
+            resetForm();
+            onCommentAdded(newToken);
+        } catch (err) {
+            setErrors({ submit: err.message });
+            setSubmitting(false);
+        };
+    };
 
     return (
         <Formik
             initialValues={{ comment: '' }}
             validationSchema={validationSchema}
-            onSubmit={async (value, { setSubmitting, setErrors }) => {
-                const { comment } = value;
-
-                try {
-                    // TODO find a way to parse the username into the create comment function (mongoose schema requires it)
-                    await createComment(comment);
-                } catch (err) {      
-                    setErrors({ submit: err.message });
-                    setSubmitting(false);
-                };
-            }}
+            onSubmit={handleFormSubmit}
         >
             {({ isSubmitting }) => (
                 <Form className={styles.leaveCommentContainer}>
@@ -36,7 +45,7 @@ const LeaveComment = () => {
                         className={styles.commentTextArea}
                         placeholder="Leave a comment..."
                     />
-                    <ErrorMessage name="comment" component="div" className={styles.commentErrorText}/>
+                    <ErrorMessage name="comment" component="div" className={styles.commentErrorText} />
                     <button
                         type="submit"
                         disabled={isSubmitting}

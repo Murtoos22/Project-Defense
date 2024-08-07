@@ -1,12 +1,15 @@
 const { Comment } = require('../models/Comment');
 
-async function createComment(commentData, authorId) {
-    const comment = new Comment({
-        text: commentData,
-        author: authorId,
-    });
+async function getOne(id) {
+    return Comment.findById(id);
+};
 
-    await comment.save();
+function createComment(commentData, username, authorId) {
+    const comment = new Comment({
+        author: authorId,
+        text: commentData,
+        authorUsername: username,
+    });
 
     return comment;
 };
@@ -85,6 +88,7 @@ async function replyToComment(commentData, commentId, authorId) {
 };
 
 module.exports = {
+    getOne,
     createComment,
     updateComment,
     deleteComment,

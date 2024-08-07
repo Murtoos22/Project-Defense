@@ -1,13 +1,23 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import styles from './Header.module.css';
 import siteLogo from '../../../public/site-logo-alt.png';
 
 import useUserLoginCheck from '../../hooks/useUserLoginCheck';
 
+import { logout } from '../../api/user-api';
+
 const Header = () => {
+  const navigate = useNavigate();
+  
   const { checkAndRedirect } = useUserLoginCheck();
   const isLoggedIn = checkAndRedirect();
+
+  async function onLogoutClickHandler() {
+    await logout();
+    navigate('/');
+  };
 
   return (
     <header className={styles.header}>
@@ -20,7 +30,12 @@ const Header = () => {
       {isLoggedIn
         ? (
           <div className={styles.navLinks}>
-            <Link to={'/logout'} className={styles.logout}>Logout</Link>
+            <button
+              className={styles.logout}
+              onClick={onLogoutClickHandler}
+            >
+              Logout
+            </button>
           </div>
         )
         : (

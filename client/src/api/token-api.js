@@ -14,3 +14,24 @@ export const getPartialTokens = async () => {
 export const getOneTokenById = async (tokenId) => {
     return (await axios.get(`${BASE_URL}/${tokenId}`, axiosConfig)).data;
 };
+
+export const appendComment = async (commentData, tokenId) => {
+    return (await axios.post(`${BASE_URL}/${tokenId}/comment`, { data: commentData }, axiosConfig)).data;
+};
+
+export const deleteComment = async (commentId, tokenId) => {
+    return (await axios.delete(`${BASE_URL}/${tokenId}/comment/${commentId}`, axiosConfig)).data;
+};
+
+// TODO remove this later
+export const appendReply = async (commentData, tokenId) => {
+    return (await axios.post(`${BASE_URL}/${tokenId}/comment/reply`, { data: commentData }, axiosConfig)).data;
+};
+
+export const likeComment = async (commentData, tokenId) => {
+    return (await axios.post(`${BASE_URL}/${tokenId}/comment/like`, { data: commentData }, axiosConfig)).data;
+};
+
+export const dislikeComment = async (commentData, tokenId) => {
+    return (await axios.post(`${BASE_URL}/${tokenId}/comment/dislike`, { data: commentData }, axiosConfig)).data;
+};

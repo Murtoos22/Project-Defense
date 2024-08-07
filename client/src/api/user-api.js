@@ -15,7 +15,10 @@ export const register = async (username, email, password, confirmPassword) => {
     );
 };
 
-// TODO review logout logic and make it functional
 export const logout = async () => {
     return await axios.get(`${BASE_URL}/logout`, axiosConfig);
+};
+
+export const getUser = async () => {
+    return (await axios.get(`${BASE_URL}/getUser`, axiosConfig)).data;
 };

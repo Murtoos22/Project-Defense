@@ -19,28 +19,41 @@
 .username {
     color: var(--accent-color);
 
-    font-size: larger;
+    font-size: 20px;
 }
 
 .commentbodyContainer {
     margin-bottom: 15px;
 }
 
-.viewRepliesButton {
-    color: var(--text-color);
-    background: var(--neon-gradient-background);
-
-    border: none;
-    cursor: pointer;
-    transition: ease-in-out;
-
-    padding: 3px;
-    border-radius: 14px;
+.commentBody {
+    font-size: 22px;
 }
 
-.viewRepliesButton:hover {
+.commentOptionsContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.commentOptionsButtonContainer {
+    margin: 0px 3px 3px;
+}
+
+.commentOptionsButton {
+    color: var(--text-color);
     background: var(--accent-gradient-background);
 
     border: 1px solid white;
-    transform: scale(1.01);
+
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.commentOptionsButton:hover {
+    color: black;
+    background: white;
+    border: 1px solid black;
+
+    padding: 10px;
+    border-radius: 20px;
 }
