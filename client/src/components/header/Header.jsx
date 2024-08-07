@@ -32,7 +32,7 @@ const Header = () => {
       {isLoggedIn
         ? (
           <div className={styles.navLinks}>
-            <Link to={`/myComments/${userId}`} className={styles.myComments}>
+            <Link to={`/userComments/${userId}`} className={styles.myComments}>
               My Comments
             </Link>
             <button

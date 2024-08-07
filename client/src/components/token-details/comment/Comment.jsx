@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
-import styles from './Comment.module.css';
-import { dislikeComment, likeComment, deleteComment } from '../../../api/token-api';
+import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
+import styles from './Comment.module.css';
 
 import Like from './Like';
 import Dislike from './Dislike';
 import EditComment from './edit-comment/EditComment';
+import TokenContext from '../../../context/TokenContext';
 import useUserOwnerCheck from '../../../hooks/useUserOwnerCheck';
 import useUserLoginCheck from '../../../hooks/useUserLoginCheck';
 
-const Comment = ({ comment, onCommentAction }) => {
+import { dislikeComment, likeComment, deleteComment } from '../../../api/token-api';
+
+const Comment = ({ comment }) => {
     const { id } = useParams();
     const { isLoggedIn } = useUserLoginCheck();
+    const { setToken } = useContext(TokenContext);
 
     const [edit, setEdit] = useState(false);
     const [likes, setLikes] = useState(comment.likes.length);
@@ -54,13 +58,13 @@ const Comment = ({ comment, onCommentAction }) => {
     const onEditSubmitted = (newToken) => {
         setEdit(false);
 
-        onCommentAction(newToken);
+        setToken(newToken);
     };
 
     const onDeleteButtonClickHandler = async () => {
         const newToken = await deleteComment(comment._id.toString(), id);
 
-        onCommentAction(newToken);
+        setToken(newToken);
     };
 
     return (

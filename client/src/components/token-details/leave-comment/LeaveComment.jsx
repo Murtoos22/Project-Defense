@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
+import TokenContext from '../../../context/TokenContext';
+
 import styles from './LeaveComment.module.css';
+
 import { appendComment } from '../../../api/token-api';
 
-const LeaveComment = ({ onCommentAdded }) => {
+const LeaveComment = () => {
     const { id } = useParams();
+    const { setToken } = useContext(TokenContext);
 
     const validationSchema = Yup.object().shape({
         comment: Yup.string().required('Comment cannot be empty!'),
@@ -19,7 +23,7 @@ const LeaveComment = ({ onCommentAdded }) => {
         try {
             const newToken = await appendComment(comment, id);
             resetForm();
-            onCommentAdded(newToken);
+            setToken(newToken);
         } catch (err) {
             setErrors({ submit: err.message });
             setSubmitting(false);
