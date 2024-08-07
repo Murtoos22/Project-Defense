@@ -3,21 +3,17 @@ import styles from './Tokens.module.css';
 
 import Card from '../card/Card';
 
-import { useGetAllTokens } from '../../hooks/useGetAllTokens';
-
 const Tokens = ({ tokens }) => {
-    // const tokens = useGetAllTokens();
-
     const [tokenQuery, setTokenQuery] = useState('');
     const [tokenQueryResult, setTokenQueryResult] = useState([]);
 
     const handleSearch = (e) => {
         const value = e.target.value;
         setTokenQuery(value);
-        // TODO implement RegEx query
-        const filtered = tokens.filter(token =>
-            token.name.toLowerCase().includes(value.toLowerCase())
-        );
+   
+        const regex = new RegExp(value, 'i');
+        const filtered = tokens.filter(token => regex.test(token.name));
+
         setTokenQueryResult(filtered);
     };
 

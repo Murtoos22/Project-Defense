@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetOneTokenById } from '../../hooks/useGetAllTokens';
 
@@ -14,7 +14,7 @@ const TokenDetails = () => {
     const { id } = useParams();
     const { isLoggedIn, navigate } = useUserLoginCheck();
 
-    const { token, setToken } = useContext(TokenContext);
+    const [token, setToken] = useState({});
 
     const [leaveComment, setLeaveComment] = useState(false);
     const [viewComments, setViewComments] = useState(false);
@@ -29,29 +29,30 @@ const TokenDetails = () => {
 
     if (!token || !token.articleContent) return <></>;
 
-    function onViewCommentsButtonClick() {
+    const onViewCommentsButtonClick = () => {
         setViewComments(true);
     };
 
-    function onHideCommentsButtonClick() {
+    const onHideCommentsButtonClick = () => {
         setViewComments(false);
     };
 
-    function onLeaveCommentButtonHandler() {
+    const onLeaveCommentButtonHandler = () => {
         if (!isLoggedIn) navigate('/login');
 
         setLeaveComment(true);
     };
 
-    function onCancelButtonClickHandler() {
+    const onCancelButtonClickHandler = () => {
         setLeaveComment(false);
     };
 
-    function handleNewComment(newToken) {
+    const handleNewComment = (newToken) => {
         setToken(newToken);
     };
 
     return (
+        <TokenContext.Provider value={{ token, setToken }}>
             <div>
                 <div className={styles.tokenArticleContainer}>
                     <div className={styles.titleContainer}>
@@ -142,6 +143,7 @@ const TokenDetails = () => {
                     : null
                 }
             </div>
+        </TokenContext.Provider>
     );
 };
 

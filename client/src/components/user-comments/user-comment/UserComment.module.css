@@ -74,3 +74,61 @@
 
     transition: ease 0.2s;
 }
+
+@media (max-width: 899px) {
+    .commentContainer {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .username {
+        font-size: 18px;
+    }
+
+    .commentBody {
+        font-size: 20px;
+    }
+
+    .commentOptionsButton {
+        font-size: 10px;
+        padding: 8px;
+    }
+
+    .voteContainer {
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .vote {
+        margin: 8px 8px;
+    }
+}
+
+@media (max-width: 599px) {
+    .commentContainer {
+        width: 95%;
+        padding: 8px;
+    }
+
+    .username {
+        font-size: 16px;
+    }
+
+    .commentBody {
+        font-size: 18px;
+    }
+
+    .commentOptionsButton {
+        font-size: 10px;
+        padding: 6px;
+    }
+
+    .voteContainer {
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .vote {
+        margin: 5px 5px;
+    }
+}

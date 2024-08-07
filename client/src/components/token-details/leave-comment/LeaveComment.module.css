@@ -7,10 +7,17 @@
     flex-direction: column;
     justify-content: center;
 
+    width: 70%;
     height: 300px;
-    margin: 2% 25%;
+    margin-bottom: 35px;
     padding: 25px;
     border-radius: 28px;
+}
+
+.formContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .commentTextArea {
@@ -54,4 +61,38 @@
     border: 1px solid white;
 
     transform: scale(1.05);
+}
+
+@media (max-width: 899px) {
+    .leaveCommentContainer {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .commentTextArea {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .leaveCommentButton {
+        width: 80%;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 599px) {
+    .leaveCommentContainer {
+        width: 85%;
+        padding: 15px;
+    }
+
+    .commentTextArea {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .leaveCommentButton {
+        width: 75%;
+        font-size: 16px;
+    }
 }

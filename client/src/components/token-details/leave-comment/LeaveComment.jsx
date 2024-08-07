@@ -37,22 +37,24 @@ const LeaveComment = () => {
             onSubmit={handleFormSubmit}
         >
             {({ isSubmitting }) => (
-                <Form className={styles.leaveCommentContainer}>
-                    <Field
-                        as="textarea"
-                        name="comment"
-                        className={styles.commentTextArea}
-                        placeholder="Leave a comment..."
-                    />
-                    <ErrorMessage name="comment" component="div" className={styles.commentErrorText} />
-                    <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className={styles.leaveCommentButton}
-                    >
-                        Comment
-                    </button>
-                </Form>
+                <div className={styles.formContainer}>
+                    <Form className={styles.leaveCommentContainer}>
+                        <Field
+                            as="textarea"
+                            name="comment"
+                            className={styles.commentTextArea}
+                            placeholder="Leave a comment..."
+                        />
+                        <ErrorMessage name="comment" component="div" className={styles.commentErrorText} />
+                        <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className={styles.leaveCommentButton}
+                        >
+                            Comment
+                        </button>
+                    </Form>
+                </div>
             )}
         </Formik>
     );

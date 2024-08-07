@@ -8,16 +8,27 @@
     color: var(--text-color);
 
     display: flex;
-    flex-direction: column;
+    margin: 0 auto;
+    text-align: center;
     align-items: center;
+    flex-direction: column;
 
+    width: 80%;
     padding: 20px;
+    margin: 0 10px;
+    line-height: 1.5;
 }
 
 .homeIntroTitle {
+    font-size: 40px;
     padding: 15px;
+
+    display: inline-block;
 }
 
 .homeIntroText {
-    font-size: 24px;
+    font-size: 32px;
+    line-height: 1.4;
+
+    display: inline-block;
 }

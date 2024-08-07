@@ -82,3 +82,20 @@
     background: var(--neon-gradient-background);
     color: white;
 }
+
+@media (max-width: 899px) {
+    .navLinks a {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 599px) {
+    .navLinks a {
+        padding: 10px;
+        font-size: 12px;
+    }
+    .logoText {
+        font-size: 22px;
+    }
+}

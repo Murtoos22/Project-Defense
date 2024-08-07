@@ -11,12 +11,13 @@ const Home = () => {
             <div className={styles.homeIntroContainer}>
                 <h1 className={styles.homeIntroTitle}>WELCOME TO THE CRYPTO BLOG</h1>
                 <p className={styles.homeIntroText}>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam maxime hic tempore placeat, ipsa sapiente consectetur minima delectus nulla tempora iste omnis architecto, velit enim. Accusantium hic odio reprehenderit, sit id magnam molestias deserunt vel aliquam debitis ex. Assumenda obcaecati ipsam, accusantium in cupiditate est commodi nisi. Aut, soluta? Cum, unde explicabo doloribus iusto blanditiis est distinctio incidunt sequi aliquam! Repudiandae, beatae. Adipisci iste deserunt quidem! Nulla tempore aperiam, quos doloremque nesciunt totam exercitationem recusandae eum repudiandae debitis veritatis sint fugit amet eveniet odio aliquam soluta, eaque temporibus, obcaecati expedita? Sapiente quidem eveniet commodi excepturi amet maxime eum ducimus nam?
+                    Welcome to the Crypto Blog, your premier destination for insightful articles and discussions about the ever-evolving world of cryptocurrency. Whether you're a seasoned investor, a blockchain enthusiast, or just starting to explore the potential of digital currencies, our blog offers a wealth of knowledge tailored to your interests.
+                </p>
+                <p className={styles.homeIntroText}>
+                    Our platform fosters an interactive community where readers can engage with content through commenting, allowing for vibrant discussions and diverse perspectives. You can also express your opinions on comments by liking or disliking them, contributing to the dynamic exchange of ideas. The Crypto Blog is dedicated to providing a space for both learning and conversation, ensuring that you stay informed and connected with the cryptocurrency community. Dive in, share your thoughts, and become a part of our growing network of crypto aficionados.
                 </p>
             </div>
             <div className={styles.homewrapper}>
-                <CardSection tokens={tokens} name={'Tokens'} />
-                <CardSection tokens={tokens} name={'Tokens'} />
                 <CardSection tokens={tokens} name={'Tokens'} />
             </div>
         </>

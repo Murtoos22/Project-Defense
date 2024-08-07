@@ -56,3 +56,37 @@
 
     transform: scale(1.05);
 }
+
+@media (max-width: 899px) {
+    .leaveCommentContainer {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .commentTextArea {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .leaveCommentButton {
+        width: 75%;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 599px) {
+    .leaveCommentContainer {
+        width: 85%;
+        padding: 15px;
+    }
+
+    .commentTextArea {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .leaveCommentButton {
+        width: 65%;
+        font-size: 16px;
+    }
+}

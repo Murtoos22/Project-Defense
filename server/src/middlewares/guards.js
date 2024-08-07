@@ -1,5 +1,3 @@
-// TODO refactor guards to work properly
-
 function isUser() {
     return function(req, res, next) {
         if(!req.user) {

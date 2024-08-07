@@ -16,7 +16,7 @@ const Header = () => {
   const { checkAndRedirect } = useUserLoginCheck();
   const isLoggedIn = checkAndRedirect();
 
-  async function onLogoutClickHandler() {
+  const onLogoutClickHandler = async () => {
     await logout();
     navigate('/');
   };

@@ -44,6 +44,24 @@
     max-width: 350px;
 }
 
+@media (min-width: 1200px) {
+    .tokenContainer {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+    .tokenContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 899px) {
+    .tokenContainer {
+        grid-template-columns: 1fr;
+    }
+}
+
 .searchContainer {
     margin: 3%;
 
