@@ -13,7 +13,19 @@
 }
 
 .usernameContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 15px;
+}
+
+.voteContainer {
+    display: flex;
+}
+
+.vote {
+    margin-right: 8px;
+    margin-left: 8px;
 }
 
 .username {
@@ -36,6 +48,10 @@
 }
 
 .commentOptionsButtonContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     margin: 0px 3px 3px;
 }
 
@@ -43,9 +59,11 @@
     color: var(--text-color);
     background: var(--accent-gradient-background);
 
-    border: 1px solid white;
+    font-weight: bold;
+    border: 2px solid white;
 
     padding: 10px;
+    font-size: 12px;
     border-radius: 20px;
 }
 

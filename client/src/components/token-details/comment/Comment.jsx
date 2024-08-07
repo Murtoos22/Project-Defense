@@ -3,9 +3,11 @@ import styles from './Comment.module.css';
 import { dislikeComment, likeComment, deleteComment } from '../../../api/token-api';
 import { useParams } from 'react-router-dom';
 
+import { ReactComponent as Like } from '../../../../public/like.svg';
 import EditComment from './edit-comment/EditComment';
 import useUserOwnerCheck from '../../../hooks/useUserOwnerCheck';
 import useUserLoginCheck from '../../../hooks/useUserLoginCheck';
+import Dislike from './Dislike';
 
 const Comment = ({ comment, onCommentAction }) => {
     const { id } = useParams();
@@ -68,6 +70,12 @@ const Comment = ({ comment, onCommentAction }) => {
                     <p className={styles.username}>
                         {comment.authorUsername}
                     </p>
+                    <div className={styles.voteContainer}>
+                        <Like viewBox="0 0 550 550" height="20" width="20" fill="white"/>
+                        <p className={styles.vote}>{likes}</p>
+                        <Dislike viewBox="0 0 550 550" height="20" width="20" fill="white"/>
+                        <p className={styles.vote}>{dislikes}</p>
+                    </div>
                 </div>
                 <div className={styles.commentbodyContainer}>
                     <p className={styles.commentBody}>
@@ -102,7 +110,6 @@ const Comment = ({ comment, onCommentAction }) => {
                                 : (
                                     <>
                                         <div className={styles.commentOptionsButtonContainer}>
-                                            <p>{likes}</p>
                                             <button
                                                 className={styles.commentOptionsButton}
                                                 onClick={onLikeButtonClickHandler}
@@ -111,7 +118,6 @@ const Comment = ({ comment, onCommentAction }) => {
                                             </button>
                                         </div>
                                         <div className={styles.commentOptionsButtonContainer}>
-                                            <p>{dislikes}</p>
                                             <button
                                                 className={styles.commentOptionsButton}
                                                 onClick={onDislikeButtonClickHandler}
