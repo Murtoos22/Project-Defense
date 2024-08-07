@@ -9,7 +9,7 @@ export default function useUserOwnerCheck(comment) {
             const user = await getUser();
             if(user._id === comment.author.toString()) {
                 setIsOwner(true);
-            }
+            };
         })();
     }, []);
     

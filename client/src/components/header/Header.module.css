@@ -36,16 +36,18 @@
 }
 
 .navLinks a {
+    background-color: var(--accent-gradient-background);
+
     padding: 8px 14px;
     font-size: 16px;
-    cursor: pointer;
-    border: 1px solid white;
     border-radius: 16px;
-    text-decoration: none;
-    display: inline-block;
-    background-color: var(--accent-gradient-background);
+    
+    cursor: pointer;
     color: white;
     font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid white;
 }
 
 .login:hover {
@@ -54,6 +56,11 @@
 }
 
 .register:hover {
+    background: var(--neon-gradient-background);
+    color: white;
+}
+
+.myComments:hover {
     background: var(--neon-gradient-background);
     color: white;
 }

@@ -7,10 +7,12 @@ import siteLogo from '../../../public/site-logo-alt.png';
 import useUserLoginCheck from '../../hooks/useUserLoginCheck';
 
 import { logout } from '../../api/user-api';
+import useGetUserData from '../../hooks/useGetUserData';
 
 const Header = () => {
   const navigate = useNavigate();
-  
+  const { _id: userId } = useGetUserData();
+
   const { checkAndRedirect } = useUserLoginCheck();
   const isLoggedIn = checkAndRedirect();
 
@@ -30,6 +32,9 @@ const Header = () => {
       {isLoggedIn
         ? (
           <div className={styles.navLinks}>
+            <Link to={`/myComments/${userId}`} className={styles.myComments}>
+              My Comments
+            </Link>
             <button
               className={styles.logout}
               onClick={onLogoutClickHandler}

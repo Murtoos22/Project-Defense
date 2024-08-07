@@ -46,6 +46,7 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/tokens' element={<Tokens tokens={tokens}/> }/>
             <Route path='/tokens/:id' element={<TokenDetails tokens={tokens} />} />
+            {/* <Route path='/myComments/:id' element={<UserComments tokens={tokens}/>} /> */}
           </Routes>
         </main>
 

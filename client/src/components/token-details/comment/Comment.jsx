@@ -3,11 +3,11 @@ import styles from './Comment.module.css';
 import { dislikeComment, likeComment, deleteComment } from '../../../api/token-api';
 import { useParams } from 'react-router-dom';
 
-import { ReactComponent as Like } from '../../../../public/like.svg';
+import Like from './Like';
+import Dislike from './Dislike';
 import EditComment from './edit-comment/EditComment';
 import useUserOwnerCheck from '../../../hooks/useUserOwnerCheck';
 import useUserLoginCheck from '../../../hooks/useUserLoginCheck';
-import Dislike from './Dislike';
 
 const Comment = ({ comment, onCommentAction }) => {
     const { id } = useParams();
