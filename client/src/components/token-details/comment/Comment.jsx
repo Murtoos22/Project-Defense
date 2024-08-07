@@ -23,10 +23,6 @@ const Comment = ({ comment }) => {
 
     const owner = useUserOwnerCheck(comment);
 
-    const onViewRepliesButtonClick = () => {
-        setViewReplies(true);
-    };
-
     const onLikeButtonClickHandler = async () => {
         try {
             const comm = await likeComment(comment, id);
@@ -75,9 +71,9 @@ const Comment = ({ comment }) => {
                         {comment.authorUsername}
                     </p>
                     <div className={styles.voteContainer}>
-                        <Like viewBox="0 0 550 550" height="20" width="20" fill="white"/>
+                        <Like viewBox="0 0 550 550" height="20" width="20" fill="white" />
                         <p className={styles.vote}>{likes}</p>
-                        <Dislike viewBox="0 0 550 550" height="20" width="20" fill="white"/>
+                        <Dislike viewBox="0 0 550 550" height="20" width="20" fill="white" />
                         <p className={styles.vote}>{dislikes}</p>
                     </div>
                 </div>
@@ -135,17 +131,6 @@ const Comment = ({ comment }) => {
                         : null
                     }
                 </div>
-                {comment.replies.length > 0
-                    ? (
-                        <button
-                            className={styles.viewRepliesButton}
-                            onClick={onViewRepliesButtonClick}
-                        >
-                            view replies
-                        </button>
-                    )
-                    : null
-                }
             </div>
             {edit
                 ? (

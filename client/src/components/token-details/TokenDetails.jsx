@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetOneTokenById } from '../../hooks/useGetAllTokens';
 
@@ -14,7 +14,7 @@ const TokenDetails = () => {
     const { id } = useParams();
     const { isLoggedIn, navigate } = useUserLoginCheck();
 
-    const [token, setToken] = useState({});
+    const { token, setToken } = useContext(TokenContext);
 
     const [leaveComment, setLeaveComment] = useState(false);
     const [viewComments, setViewComments] = useState(false);
@@ -52,7 +52,6 @@ const TokenDetails = () => {
     };
 
     return (
-        <TokenContext.Provider value={{ token, setToken }}>
             <div>
                 <div className={styles.tokenArticleContainer}>
                     <div className={styles.titleContainer}>
@@ -143,7 +142,6 @@ const TokenDetails = () => {
                     : null
                 }
             </div>
-        </TokenContext.Provider>
     );
 };
 

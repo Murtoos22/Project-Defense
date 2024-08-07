@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import styles from './EditComment.module.css';
+
 import { editComment } from '../../../../api/token-api';
 
 const EditComment = ({ comment, onEdit }) => {
@@ -16,9 +17,16 @@ const EditComment = ({ comment, onEdit }) => {
 
     const handleFormSubmit = async (value, { setSubmitting, setErrors, resetForm }) => {
         const { comment: newComment } = value;
-        
+
         try {
-            const newToken = await editComment(commentId, newComment, id);
+            let newToken;
+            if(!comment.tokenId) {
+                newToken = await editComment(commentId, newComment, id);
+            } else {
+                newToken = await editComment(commentId, newComment, comment.tokenId);
+            };
+            console.log(newToken);
+            
             onEdit(newToken);
         } catch (err) {
             setErrors({ submit: err.message });
@@ -28,7 +36,7 @@ const EditComment = ({ comment, onEdit }) => {
 
     return (
         <Formik
-            initialValues={{ comment: comment }}
+            initialValues={{ comment: comment.text }}
             validationSchema={validationSchema}
             onSubmit={handleFormSubmit}
         >
@@ -39,7 +47,7 @@ const EditComment = ({ comment, onEdit }) => {
                         name="comment"
                         placeholder="edit your comment..."
                         className={styles.commentTextArea}
-                        value={values.comment.text}
+                        value={values.comment}
                         onChange={handleChange}
                         onBlur={handleBlur}
                     />

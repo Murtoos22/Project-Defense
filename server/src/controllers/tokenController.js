@@ -103,25 +103,6 @@ tokenRouter.put('/tokens/:id/comment/:commentId', isUser(), async (req, res) => 
     };
 });
 
-
-// TODO remove if unused
-tokenRouter.post('/tokens/:id/comment/reply', isUser(), async(req, res) => {
-    try {
-        const tokenId = req.params.id;
-        const commentData = req.body.data;
-        const { _id: userId, username } = req.user;
-
-        const comment = createComment(commentData, username, userId);
-        const token = await appendReply(comment, tokenId);
-
-        if(!token) res.status(404);
-
-        res.send(token);
-    } catch (error) {
-        res.status(500).send({ error: 'Internal Server Error' });
-    };
-});
-
 tokenRouter.post('/tokens/:id/comment/like', isUser(), async (req, res) => {
     try {
         const tokenId = req.params.id;
