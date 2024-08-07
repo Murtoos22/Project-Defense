@@ -23,6 +23,10 @@ export const deleteComment = async (commentId, tokenId) => {
     return (await axios.delete(`${BASE_URL}/${tokenId}/comment/${commentId}`, axiosConfig)).data;
 };
 
+export const editComment = async (commentId, commentData, tokenId) => {
+    return (await axios.put(`${BASE_URL}/${tokenId}/comment/${commentId}`, { data: commentData }, axiosConfig)).data;
+};
+
 // TODO remove this later
 export const appendReply = async (commentData, tokenId) => {
     return (await axios.post(`${BASE_URL}/${tokenId}/comment/reply`, { data: commentData }, axiosConfig)).data;

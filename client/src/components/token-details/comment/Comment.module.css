@@ -57,3 +57,29 @@
     padding: 10px;
     border-radius: 20px;
 }
+
+
+.cancelCommentContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancelCommentButton {
+    color: var(--text-color);
+
+    border: none;
+    background: red;
+
+    width: 35px;
+    height: 35px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+}
+
+.cancelCommentButton:hover {
+    color: red;
+
+    background: white;
+    transition: ease-in 0.1s;
+}

@@ -70,6 +70,40 @@ tokenRouter.delete('/tokens/:id/comment/:commentId', isUser(), async (req, res) 
     };
 });
 
+tokenRouter.put('/tokens/:id/comment/:commentId', isUser(), async (req, res) => {
+    try {
+        const tokenId = req.params.id;
+        const commentId = req.params.commentId;
+
+        const { _id: userId } = req.user;
+
+        const token = await getOne(tokenId);
+
+        if (!token) {
+            return res.status(404).send({ error: 'Token not found' });
+        };
+
+        const comment = token.articleContent.comments.id(commentId);
+
+        if (!comment) {
+            return res.status(404).send({ error: 'Comment not found' });
+        };
+
+        if (comment.author.toString() !== userId) {
+            return res.status(403).send({ error: 'You can only edit your own comments' });
+        };
+
+        comment.text = req.body.data;
+
+        await token.save();
+
+        res.send(token);
+    } catch (error) {
+        res.status(500).send({ error: 'Internal Server Error' });
+    }
+});
+
+
 // TODO remove if unused
 tokenRouter.post('/tokens/:id/comment/reply', isUser(), async(req, res) => {
     try {

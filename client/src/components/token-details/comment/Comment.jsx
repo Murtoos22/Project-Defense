@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import styles from './Comment.module.css';
-import { dislikeComment, likeComment, appendReply, deleteComment } from '../../../api/token-api';
+import { dislikeComment, likeComment, deleteComment } from '../../../api/token-api';
 import { useParams } from 'react-router-dom';
 
+import EditComment from './edit-comment/EditComment';
 import useUserOwnerCheck from '../../../hooks/useUserOwnerCheck';
+import useUserLoginCheck from '../../../hooks/useUserLoginCheck';
 
 const Comment = ({ comment, onCommentAction }) => {
     const { id } = useParams();
+    const { isLoggedIn } = useUserLoginCheck();
 
+    const [edit, setEdit] = useState(false);
     const [likes, setLikes] = useState(comment.likes.length);
     const [dislikes, setDislikes] = useState(comment.dislikes.length);
 
@@ -17,7 +21,7 @@ const Comment = ({ comment, onCommentAction }) => {
         setViewReplies(true);
     };
 
-    const onLikeButtonClickHandler = async() => {
+    const onLikeButtonClickHandler = async () => {
         try {
             const comm = await likeComment(comment, id);
             setLikes(comm.likes.length)
@@ -26,7 +30,7 @@ const Comment = ({ comment, onCommentAction }) => {
         };
     };
 
-    const onDislikeButtonClickHandler = async() => {
+    const onDislikeButtonClickHandler = async () => {
         try {
             const comm = await dislikeComment(comment, id);
             setDislikes(comm.dislikes.length)
@@ -35,88 +39,119 @@ const Comment = ({ comment, onCommentAction }) => {
         };
     };
 
-    const onEditButtonClickHandler = async() => {
-        
+    const onEditButtonClickHandler = async () => {
+        setEdit(true);
     };
 
-    const onDeleteButtonClickHandler = async() => {
+    const onCancelButtonClickHandler = () => {
+        setEdit(false);
+    };
+
+    const onEditSubmitted = (newToken) => {
+        setEdit(false);
+
+        onCommentAction(newToken);
+    };
+
+    const onDeleteButtonClickHandler = async () => {
         const newToken = await deleteComment(comment._id.toString(), id);
-        console.log(newToken);
-        
+
         onCommentAction(newToken);
     };
 
     return (
-        <div className={styles.commentContainer}>
-            <div className={styles.usernameContainer}>
-                <p className={styles.username}>
-                    {comment.authorUsername}
-                </p>
-            </div>
-            <div className={styles.commentbodyContainer}>
-                <p className={styles.commentBody}>
-                    {comment.text}
-                </p>
-            </div>
+        <>
+            <div className={styles.commentContainer}>
+                <div className={styles.usernameContainer}>
+                    <p className={styles.username}>
+                        {comment.authorUsername}
+                    </p>
+                </div>
+                <div className={styles.commentbodyContainer}>
+                    <p className={styles.commentBody}>
+                        {comment.text}
+                    </p>
+                </div>
 
-            <div className={styles.commentOptionsContainer}>
-                {owner
+                <div className={styles.commentOptionsContainer}>
+                    {isLoggedIn
+                        ? (
+                            owner
+                                ? (
+                                    <>
+                                        <div className={styles.commentOptionsButtonContainer}>
+                                            <button
+                                                className={styles.commentOptionsButton}
+                                                onClick={onEditButtonClickHandler}
+                                            >
+                                                Edit
+                                            </button>
+                                        </div>
+                                        <div className={styles.commentOptionsButtonContainer}>
+                                            <button
+                                                className={styles.commentOptionsButton}
+                                                onClick={onDeleteButtonClickHandler}
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </>
+                                )
+                                : (
+                                    <>
+                                        <div className={styles.commentOptionsButtonContainer}>
+                                            <p>{likes}</p>
+                                            <button
+                                                className={styles.commentOptionsButton}
+                                                onClick={onLikeButtonClickHandler}
+                                            >
+                                                Like
+                                            </button>
+                                        </div>
+                                        <div className={styles.commentOptionsButtonContainer}>
+                                            <p>{dislikes}</p>
+                                            <button
+                                                className={styles.commentOptionsButton}
+                                                onClick={onDislikeButtonClickHandler}
+                                            >
+                                                Dislike
+                                            </button>
+                                        </div>
+                                    </>
+                                )
+                        )
+                        : null
+                    }
+                </div>
+                {comment.replies.length > 0
                     ? (
-                        <>
-                            <div className={styles.commentOptionsButtonContainer}>
-                                <button
-                                    className={styles.commentOptionsButton}
-                                    onClick={onLikeButtonClickHandler}
-                                >
-                                    Edit
-                                </button>
-                            </div>
-                            <div className={styles.commentOptionsButtonContainer}>
-                                <button
-                                    className={styles.commentOptionsButton}
-                                    onClick={onDeleteButtonClickHandler}
-                                >
-                                    Delete
-                                </button>
-                            </div>
-                        </>
+                        <button
+                            className={styles.viewRepliesButton}
+                            onClick={onViewRepliesButtonClick}
+                        >
+                            view replies
+                        </button>
                     )
-                    : (
-                        <>
-                            <div className={styles.commentOptionsButtonContainer}>
-                                <p>{likes}</p>
-                                <button
-                                    className={styles.commentOptionsButton}
-                                    onClick={onLikeButtonClickHandler}
-                                >
-                                    Like
-                                </button>
-                            </div>
-                            <div className={styles.commentOptionsButtonContainer}>
-                                <p>{dislikes}</p>
-                                <button
-                                    className={styles.commentOptionsButton}
-                                    onClick={onDislikeButtonClickHandler}
-                                >
-                                    Dislike
-                                </button>
-                            </div>
-                        </>
-                    )
+                    : null
                 }
             </div>
-            {comment.replies.length > 0
+            {edit
                 ? (
-                    <button
-                        className={styles.viewRepliesButton}
-                        onClick={onViewRepliesButtonClick}
-                    >
-                        view replies
-                    </button>
+                    <>
+                        <EditComment comment={comment} onEdit={onEditSubmitted} />
+                        <div className={styles.cancelCommentContainer}>
+                            <button
+                                className={styles.cancelCommentButton}
+                                onClick={onCancelButtonClickHandler}
+                            >
+                                X
+                            </button>
+                        </div>
+                    </>
                 )
                 : null
             }
-        </div>
+        </>
     );
 };
 

@@ -3,23 +3,23 @@ import { useParams } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import styles from './LeaveComment.module.css';
-import { appendComment } from '../../../api/token-api';
+import styles from './EditComment.module.css';
+import { editComment } from '../../../../api/token-api';
 
-const LeaveComment = ({ onCommentAdded }) => {
+const EditComment = ({ comment, onEdit }) => {
     const { id } = useParams();
+    const commentId = comment._id.toString();
 
     const validationSchema = Yup.object().shape({
         comment: Yup.string().required('Comment cannot be empty!'),
     });
 
     const handleFormSubmit = async (value, { setSubmitting, setErrors, resetForm }) => {
-        const { comment } = value;
-
+        const { comment: newComment } = value;
+        
         try {
-            const newToken = await appendComment(comment, id);
-            resetForm();
-            onCommentAdded(newToken);
+            const newToken = await editComment(commentId, newComment, id);
+            onEdit(newToken);
         } catch (err) {
             setErrors({ submit: err.message });
             setSubmitting(false);
@@ -28,17 +28,20 @@ const LeaveComment = ({ onCommentAdded }) => {
 
     return (
         <Formik
-            initialValues={{ comment: '' }}
+            initialValues={{ comment: comment }}
             validationSchema={validationSchema}
             onSubmit={handleFormSubmit}
         >
-            {({ isSubmitting }) => (
+            {({ values, isSubmitting, handleChange, handleBlur }) => (
                 <Form className={styles.leaveCommentContainer}>
                     <Field
                         as="textarea"
                         name="comment"
+                        placeholder="edit your comment..."
                         className={styles.commentTextArea}
-                        placeholder="Leave a comment..."
+                        value={values.comment.text}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
                     />
                     <ErrorMessage name="comment" component="div" className={styles.commentErrorText} />
                     <button
@@ -46,7 +49,7 @@ const LeaveComment = ({ onCommentAdded }) => {
                         disabled={isSubmitting}
                         className={styles.leaveCommentButton}
                     >
-                        Comment
+                        Edit
                     </button>
                 </Form>
             )}
@@ -54,4 +57,4 @@ const LeaveComment = ({ onCommentAdded }) => {
     );
 };
 
-export default LeaveComment;
+export default EditComment;

@@ -83,8 +83,6 @@ userRouter.get('/logout', isUser(), (req, res) => {
 });
 
 userRouter.get('/getUser', (req, res) => {
-    console.log(req.user);
-    
     res.send(req.user);
 });
 
