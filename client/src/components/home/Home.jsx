@@ -5,7 +5,6 @@ import { useGetPartialTokens } from '../../hooks/useGetAllTokens';
 
 const Home = () => {
     const tokens = useGetPartialTokens();
-    // TODO change LOREM text
     return (
         <>
             <div className={styles.homeIntroContainer}>
