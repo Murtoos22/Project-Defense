@@ -13,8 +13,7 @@ const Header = () => {
   const navigate = useNavigate();
   const { _id: userId } = useGetUserData();
 
-  const { checkAndRedirect } = useUserLoginCheck();
-  const isLoggedIn = checkAndRedirect();
+  const { isLoggedIn } = useUserLoginCheck();
 
   const onLogoutClickHandler = async () => {
     await logout();

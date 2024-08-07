@@ -3,7 +3,8 @@ import { getUser } from "../api/user-api";
 import { getAllTokens } from "../api/token-api";
 
 export default function useGetUserComments() {
-    const [userComments, setUserComments] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         (async () => {
@@ -11,7 +12,7 @@ export default function useGetUserComments() {
                 const user = await getUser();
                 const tokens = await getAllTokens();
 
-                const allComments = tokens.flatMap(token => 
+                const allComments = tokens.flatMap(token =>
                     token.articleContent.comments.map(comment => ({
                         ...comment,
                         tokenId: token._id
@@ -20,12 +21,14 @@ export default function useGetUserComments() {
 
                 const userSpecificComments = allComments.filter(comm => comm.author.toString() === user._id);
 
-                setUserComments(userSpecificComments);
+                setComments(userSpecificComments);
             } catch (error) {
                 console.error('Error fetching user comments:', error);
-            }
+            } finally {
+                setLoading(false);
+            };
         })();
     }, []);
 
-    return userComments;
+    return { loading, comments };
 };

@@ -5,20 +5,19 @@ import styles from './UserComments.module.css';
 import useGetUserComments from '../../hooks/useGetUserComments';
 import UserComment from './user-comment/UserComment';
 import { Link } from 'react-router-dom';
+import Spinner from '../spinner/Spinner';
 
 const UserComments = () => {
-  const comments = useGetUserComments();
-  const [_, setState] = useState(false);
+  const { loading, comments} = useGetUserComments();
 
-  const renderFunc = () => {
-    setState(true);
-  };
+  console.log(loading, comments);
+  if(loading) return <Spinner />;
 
   return (
     <div className={styles.userCommentsContainer}>
-      {comments.length > 0
+      {comments.length > 0 && !loading
         ? (
-          comments.map(comm => <UserComment key={comm._id} comment={comm} onEdit={renderFunc} />)
+          comments.map(comm => <UserComment key={comm._id} comment={comm} />)
         )
         : (
           <>
